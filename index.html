@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Xây dựng lớp hình tròn</title>
+</head>
+<body>
+<canvas id="myCanvas" height="300" width="300" style="border:1px solid greenyellow"></canvas>
+<script>
+    class Shape {
+        constructor(p_x, p_y) {
+            this.pos_x = p_x;
+            this.pos_y = p_y;
+        }
+// ham truu tuong tinh dien tich
+        getArea(){}
+        // ham truu  tuong tinh chu vi
+        getPerimeter(){}
+        // ham truu tuong de ve
+        draw(){}
+
+    }
+    class Circle extends Shape{
+        constructor(x,y,r) {
+            super(x,y);
+            this.radius = r;
+        }
+        getArea() {
+            return Math.PI*this.radius*this.radius;
+        }
+        getPerimeter() {
+            return 2*Math.PI*this.radius;
+        }
+        draw(context) {
+            context.beginPath();
+            context.arc(this.pos_x,this.pos_y, this.radius,0,2*Math.PI);
+            context.stroke();
+            context.font= "12px Arial"
+            context.fillText("chu vi:" + this.getPerimeter(),
+                this.pos_x,this.pos_y + this.radius +20);
+            context.fillText("dien tich:" + this.getArea(),
+                this.pos_x,this.pos_y + this.radius +50);
+        }
+    }
+    function main(){
+        let canvas = document.getElementById('myCanvas');
+        let context = canvas.getContext('2d');
+        let myCicle = new Circle(150,150,50);
+        myCicle.draw(context);
+        let yourCicle = new Circle(150,150,100);
+        yourCicle.draw(context);
+        let uuCicle = new Circle(150,150,20);
+        uuCicle.draw(context);
+    }
+    main();
+</script>
+
+
+
+</body>
+</html>
